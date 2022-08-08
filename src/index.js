@@ -2,8 +2,7 @@ const express = require('express');
 
 const app = express();
 
-// middleware adicionado para informar que o body pode ser um tipo json
-app.use(express.json()); // middleware
+app.use(express.json());
 
 app.get('/courses', (request, response) => {
   const query = request.query;
