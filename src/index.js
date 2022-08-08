@@ -10,6 +10,11 @@ app.post('/courses', (request, response) => {
   return response.json(['Curso 1', 'Curso 2', 'Curso 3', 'Curso 4']);
 });
 
-// o campo put utilizado dessa forma é para que pegue um determinado item usando '/:id' depois da url e que possa editá-lo de tal maneira
-app.put('/courses/:id', (request, response) => {});
+app.put('/courses/:id', (request, response) => {
+  return response.json(['Curso 6', 'Curso 2', 'Curso 3', 'Curso 4']);
+});
+
+app.patch('/courses/:id', (request, response) => {
+  return response.json(['Curso 6', 'Curso 7', 'Curso 3', 'Curso 4']);
+});
 app.listen(3333);
