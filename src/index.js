@@ -2,12 +2,8 @@ const express = require('express');
 
 const app = express();
 
-/* tipos de parâmetros
- * exemplo - '/courses/:id' - o :id é um Route Params
- * Route Params => serve para identificar um recurso para poder editar/deletar
- * Query Params => serve para criar uma paginação/filtro de busca
- * Body Params => os objetos inserção/alteração
- */
+// middleware adicionado para informar que o body pode ser um tipo json
+app.use(express.json()); // middleware
 
 app.get('/courses', (request, response) => {
   const query = request.query;
