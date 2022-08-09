@@ -135,4 +135,43 @@ app.get('/statement/date', verifyIfExistsAccountCPF, (request, response) => {
   return response.json(customer.statement);
 });
 
+// atualiza dados
+app.put('/account', verifyIfExistsAccountCPF, (request, response) => {
+  // nome que vai ser setado no middleware
+  const { name } = request.body;
+  //console.log('name: ', name);
+
+  // middleware que contém os dados do usuário
+  const { customer } = request;
+  // console.log('customer: ', customer);
+
+  // alterando  antigo name para o name que está vindo da requisição request.body
+  customer.name = name;
+
+  return response.status(201).send();
+});
+
+// obtém os dados do usuário na tela
+app.get('/account', verifyIfExistsAccountCPF, (request, response) => {
+  const { customer } = request;
+  return response.json(customer);
+});
+
+app.delete('/account', verifyIfExistsAccountCPF, (request, response) => {
+  const { customer } = request;
+
+  //o primeiro parâmetro do splice inicia no próprio objeto que deseja excluir
+  //o segundo parâmetro é até onde ele irá fazer a remoção
+  customers.splice(customer, 1);
+
+  return response.status(200).json(customers);
+});
+
+app.get('/balance', verifyIfExistsAccountCPF, (request, response) => {
+  const { customer } = request;
+
+  const balance = getBalance(customer.statement);
+
+  return response.json(balance);
+});
 app.listen(3333);
